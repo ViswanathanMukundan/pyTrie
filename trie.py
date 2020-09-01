@@ -1,17 +1,17 @@
-#Define a trie in  python 
-#Elements are stored only using lowercase characters for simplicity 
-#Consider all entries as completely lowercase
-#Convert entries to lowercase before searching, hence making the search operation case-insensitive
+# Define a trie in  python 
+# Elements are stored only using lowercase characters for simplicity 
+# Consider all entries as completely lowercase
+# Convert entries to lowercase before searching, hence making the search operation case-insensitive
 
-class TrieNode:		#Template for defining individual nodes of the trie.
+class TrieNode:		# Template for defining individual nodes of the trie.
 
 	def __init__(self):
-		self.children = [None]*26	#One child for each letter of the alphabet 
+		self.children = [None]*26	# One child for each letter of the alphabet 
 
-		self.terminator = False		#If terminator is true => end of the word
+		self.terminator = False		# If terminator is true => end of the word
 
 
-class Trie:
+class Trie:	# Actual trie class
 
 	def __init__(self):
 		self.root = self.newNode()
@@ -19,7 +19,7 @@ class Trie:
 	def newNode(self):
 		return TrieNode()
 
-	def insertNode(self, word):   #The number of characters in the word define the number of levels occupied in the trie.
+	def insertNode(self, word):   # The number of characters in the word define the number of levels occupied in the trie.
 		word = word.lower()
 		trieRoot = self.root
 		wordLength = len(word) 
@@ -30,7 +30,7 @@ class Trie:
 				trieRoot.children[letterNo] = self.newNode()
 			trieRoot = trieRoot.children[letterNo]
 						
-		trieRoot.terminator = True		#mark the end of the word
+		trieRoot.terminator = True		# Marks the end of the word
 
 	def search(self, word):
 		lowerCaseWord = word.lower()
@@ -43,6 +43,8 @@ class Trie:
 			trieRoot = trieRoot.children[letterNo]
 		return trieRoot.terminator and trieRoot is not None 
 
+'''
+TESTING
 
 words = ['app','apple','apply','application','bee','beware']
 wordTrie = Trie()
@@ -53,3 +55,4 @@ for word in words:
 for word in words:
 	print(wordTrie.search(word))
 print(wordTrie.search('BEwArE'))
+'''
